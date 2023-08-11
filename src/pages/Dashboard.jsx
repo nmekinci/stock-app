@@ -85,6 +85,8 @@ function Dashboard(props) {
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               width: drawerWidth,
+              backgroundColor: "secondary.main",
+              color: "white"
             },
           }}
         >
