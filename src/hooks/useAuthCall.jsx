@@ -44,7 +44,7 @@ const useAuthCall = () => {
   const dispatch = useDispatch()
 
   const login = async (userData) => {
-    // const BASE_URL = "https://10001.fullstack.clarusway.com"
+    // const BASE_URL = "https://10117.fullstack.clarusway.com"
 
     console.log(import.meta.env.VITE_API_KEY)
     console.log(import.meta.env.VITE_API_KEY_PROD)
@@ -56,7 +56,7 @@ const useAuthCall = () => {
         userData
       )
       dispatch(loginSuccess(data))
-      toastSuccessNotify("login islemi basarili")
+      toastSuccessNotify("Logged in Successfully")
       navigate("/stock")
     } catch (error) {
       console.log(error.message)
@@ -70,12 +70,12 @@ const useAuthCall = () => {
     try {
       await axios.post(`${import.meta.env.VITE_BASE_URL}/account/auth/logout/`)
       dispatch(logoutSuccess())
-      toastSuccessNotify("logout islemi basarili")
+      toastSuccessNotify("Logged Out Successfully")
       navigate("/")
     } catch (error) {
       console.log(error)
       dispatch(fetchFail())
-      toastErrorNotify("Logout islemi basarisiz")
+      toastErrorNotify("Logout FAILED")
     }
   }
 
@@ -87,12 +87,12 @@ const useAuthCall = () => {
         userData
       )
       dispatch(registerSuccess(data))
-      toastSuccessNotify("kayit islemi basarili")
+      toastSuccessNotify("Registred succesfully")
       navigate("/stock")
     } catch (error) {
       console.log(error)
       dispatch(fetchFail())
-      toastErrorNotify("Kayit islemi basarisiz olmustur.")
+      toastErrorNotify("Register Failed")
     }
   }
 

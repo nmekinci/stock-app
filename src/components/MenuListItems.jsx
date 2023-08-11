@@ -1,8 +1,9 @@
-import List from "@mui/material/List"
-import ListItem from "@mui/material/ListItem"
-import ListItemButton from "@mui/material/ListItemButton"
-import ListItemIcon from "@mui/material/ListItemIcon"
-import ListItemText from "@mui/material/ListItemText"
+import React, { useState } from "react";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
 // import DashboardCustomizeIcon from "@mui/icons-material/DashboardCustomize"
 // import AttachMoneyIcon from "@mui/icons-material/AttachMoney"
 // import InventoryIcon from "@mui/icons-material/Inventory"
@@ -10,9 +11,9 @@ import ListItemText from "@mui/material/ListItemText"
 // import StarsIcon from "@mui/icons-material/Stars"
 // import ShoppingCartIcon from "@mui/icons-material/ShoppingCart"
 // import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount"
-import { useNavigate } from "react-router-dom"
-import { icons } from "../helper/ListIcons"
-
+import { useNavigate } from "react-router-dom";
+import { icons } from "../helper/ListIcons";
+import { useLocation } from "react-router-dom";
 
 // const icons = [
 //   {
@@ -53,16 +54,39 @@ import { icons } from "../helper/ListIcons"
 // ]
 
 const MenuListItems = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+
+  const [selectedItem, setSelectedItem] = useState("/stock/");
+
+  const location = useLocation();
+  const isLinkActive = (path) => {
+    // console.log(path, "path.pathname");
+    // console.log(location.pathname, "loc.pathname");
+    // console.log(selectedItem, "selecteditem");
+    return path === selectedItem
+    
+  };
+
   return (
     <div>
-      <List sx={{backgroundColor:"rgb(37,47,58)"}}>
+      <List sx={{ backgroundColor: "rgb(37,47,58)" }}>
         {icons.map((item, index) => (
           <ListItem
             key={index}
             disablePadding
-            onClick={() => navigate(item.url)}
-            sx={{color:"white" ,"&.MuiSvgIcon-root":{color:"white"}, "&:hover": {color:"red"}, "&:hover .MuiSvgIcon-root": {color:"red"}}}
+            onClick={() => {
+              navigate(item.url)
+              setSelectedItem(item.url)
+            }}
+            sx={{
+              color: "white",
+              "&.MuiSvgIcon-root": { color: "white" },
+              "&:hover": { color: "red" },
+              "&:hover .MuiSvgIcon-root": { color: "red" },
+              ...(isLinkActive(item.url) || selectedItem === item.url
+                ? { color: "blue" }
+                : {})
+            }}
           >
             <ListItemButton>
               <ListItemIcon>{item.icon}</ListItemIcon>
@@ -72,7 +96,7 @@ const MenuListItems = () => {
         ))}
       </List>
     </div>
-  )
-}
+  );
+};
 
-export default MenuListItems
+export default MenuListItems;

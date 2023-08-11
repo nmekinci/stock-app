@@ -41,6 +41,6 @@ export const icons = [
   {
     title: "Admin Panel",
     icon: <SupervisorAccountIcon />,
-    url: "https://10001.fullstack.clarusway.com/admin",
+    url: "https://10117.fullstack.clarusway.com/admin",
   },
 ];

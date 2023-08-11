@@ -10,7 +10,7 @@ export const login = async (userData) => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
-  const BASE_URL = "https://10001.fullstack.clarusway.com"
+  const BASE_URL = "https://10117.fullstack.clarusway.com"
 
   dispatch(fetchStart())
   try {
@@ -19,7 +19,7 @@ export const login = async (userData) => {
       userData
     )
     dispatch(loginSuccess(data))
-    toastSuccessNotify("login islemi basarili")
+    toastSuccessNotify("Logged in successfully")
     navigate("/stock")
   } catch (error) {
     console.log(error)
