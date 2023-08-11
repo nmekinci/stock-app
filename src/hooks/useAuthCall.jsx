@@ -46,8 +46,8 @@ const useAuthCall = () => {
   const login = async (userData) => {
     // const BASE_URL = "https://10001.fullstack.clarusway.com"
 
-    // console.log(import.meta.env.VITE_API_KEY)
-    // console.log(import.meta.env.VITE_API_KEY_PROD)
+    console.log(import.meta.env.VITE_API_KEY)
+    console.log(import.meta.env.VITE_API_KEY_PROD)
 
     dispatch(fetchStart())
     try {
