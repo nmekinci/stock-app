@@ -11,9 +11,9 @@ import ListItemText from "@mui/material/ListItemText";
 // import StarsIcon from "@mui/icons-material/Stars"
 // import ShoppingCartIcon from "@mui/icons-material/ShoppingCart"
 // import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount"
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { icons } from "../helper/ListIcons";
-import { useLocation } from "react-router-dom";
+
 
 // const icons = [
 //   {
@@ -58,7 +58,7 @@ const MenuListItems = () => {
 
   const [selectedItem, setSelectedItem] = useState("/stock/");
 
-  const location = useLocation();
+  // // const location = useLocation();
   const isLinkActive = (path) => {
     // console.log(path, "path.pathname");
     // console.log(location.pathname, "loc.pathname");
