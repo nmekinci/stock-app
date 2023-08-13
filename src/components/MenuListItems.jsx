@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+// import React, { useState } from "react";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
@@ -11,7 +11,7 @@ import ListItemText from "@mui/material/ListItemText";
 // import StarsIcon from "@mui/icons-material/Stars"
 // import ShoppingCartIcon from "@mui/icons-material/ShoppingCart"
 // import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount"
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { icons } from "../helper/ListIcons";
 
 
@@ -53,16 +53,12 @@ import { icons } from "../helper/ListIcons";
 //   },
 // ]
 
-const MenuListItems = () => {
+const MenuListItems = ({selectedItem, setSelectedItem}) => {
   const navigate = useNavigate();
 
-  const [selectedItem, setSelectedItem] = useState("/stock/");
-
-  // // const location = useLocation();
+ 
   const isLinkActive = (path) => {
-    // console.log(path, "path.pathname");
-    // console.log(location.pathname, "loc.pathname");
-    // console.log(selectedItem, "selecteditem");
+
     return path === selectedItem
     
   };
@@ -84,7 +80,7 @@ const MenuListItems = () => {
               "&:hover": { color: "red" },
               "&:hover .MuiSvgIcon-root": { color: "red" },
               ...(isLinkActive(item.url) || selectedItem === item.url
-                ? { color: "blue" }
+                ? { textDecoration:"underline", color:"#bebe" }
                 : {})
             }}
           >

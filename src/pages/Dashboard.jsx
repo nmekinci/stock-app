@@ -15,7 +15,8 @@ import MenuListItems from "../components/MenuListItems"
 import { Outlet } from "react-router-dom"
 import useAuthCall from "../hooks/useAuthCall"
 
-import { useLocation } from "react-router-dom"
+
+import { useState } from "react"
 
 const drawerWidth = 200
 
@@ -24,8 +25,9 @@ function Dashboard(props) {
   const { window } = props
   const [mobileOpen, setMobileOpen] = React.useState(false)
 
-  // const location = useLocation()
-  const isLinkActive = (path) => path.pathname === location.pathname
+
+  const [selectedItem, setSelectedItem] = useState("/stock/");
+
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen)
@@ -35,7 +37,7 @@ function Dashboard(props) {
     <div>
       <Toolbar />
       <Divider />
-      <MenuListItems />
+      <MenuListItems setSelectedItem={setSelectedItem} selectedItem={selectedItem} />
     </div>
   )
 
