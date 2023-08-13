@@ -24,7 +24,7 @@ function Dashboard(props) {
   const { window } = props
   const [mobileOpen, setMobileOpen] = React.useState(false)
 
-  const location = useLocation()
+  // const location = useLocation()
   const isLinkActive = (path) => path.pathname === location.pathname
 
   const handleDrawerToggle = () => {
