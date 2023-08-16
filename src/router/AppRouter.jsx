@@ -5,7 +5,7 @@ import Register from "../pages/Register"
 import PrivateRouter from "./PrivateRouter"
 import Dashboard from "../pages/Dashboard"
 import Home from "../pages/Home"
-import Purchases from "../pages/Purchases"
+import EnhancedTable from "../pages/Purchases"
 import Sales from "../pages/Sales"
 import Products from "../pages/Products"
 import Firms from "../pages/Firms"
@@ -20,7 +20,8 @@ const AppRouter = () => {
         <Route path="stock" element={<PrivateRouter />}>
           <Route path="" element={<Dashboard />}>
             <Route index element={<Home />} />
-            <Route path="purchases" element={<Purchases />} />
+            {/* <Route path="purchases" element={<Purchases />} /> */}
+            <Route path="purchases" element={<EnhancedTable />} />
             <Route path="sales" element={<Sales />} />
             <Route path="products" element={<Products />} />
             <Route path="firms" element={<Firms />} />

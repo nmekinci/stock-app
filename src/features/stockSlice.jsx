@@ -16,10 +16,14 @@ const stockSlice = createSlice({
     fetchStart: (state) => {
       (state.loading = true), (state.error = false);
     },
-    getStockSuccess: (state, { payload }) => {
+    getStockSuccess: (state, { payload}) => {
       state.loading = false;
       state[payload.url] = payload.data;
     },
+    // getStockSuccess: (state, { payload: {url, data} }) => {
+    //   state.loading = false;
+    //   state[url] = data;
+    // },
     fetchFail: (state) => {
         state.loading = false
         state.error = true
