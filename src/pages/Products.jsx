@@ -2,6 +2,8 @@ import { useSelector } from "react-redux"
 import useStockCall from "../hooks/useStockCall"
 import  Typography  from "@mui/material/Typography"
 import Button  from "@mui/material/Button"
+import ProductModal from "../components/ProductModal"
+import ProductTable from "../components/ProductTable"
 
 const Products = () => {
 
