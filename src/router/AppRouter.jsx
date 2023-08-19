@@ -11,6 +11,7 @@ import Products from "../pages/Products"
 import Firms from "../pages/Firms"
 import Brands from "../pages/Brands"
 import Purchases from "../pages/Purchases"
+import NoAuthPage from "../components/NoAuthPage"
 
 const AppRouter = () => {
   return (
@@ -27,6 +28,7 @@ const AppRouter = () => {
             <Route path="products" element={<Products />} />
             <Route path="firms" element={<Firms />} />
             <Route path="brands" element={<Brands />} />
+            <Route path="no" element={<NoAuthPage />} />
           </Route>
         </Route>
       </Routes>

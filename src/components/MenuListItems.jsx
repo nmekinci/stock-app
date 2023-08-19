@@ -13,7 +13,7 @@ import ListItemText from "@mui/material/ListItemText";
 // import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount"
 import { useNavigate } from "react-router-dom";
 import { icons } from "../helper/ListIcons";
-
+import { useSelector } from "react-redux";
 
 // const icons = [
 //   {
@@ -53,14 +53,12 @@ import { icons } from "../helper/ListIcons";
 //   },
 // ]
 
-const MenuListItems = ({selectedItem, setSelectedItem}) => {
+const MenuListItems = ({ selectedItem, setSelectedItem }) => {
   const navigate = useNavigate();
+  const { isAdmin } = useSelector((state) => state.auth);
 
- 
   const isLinkActive = (path) => {
-
-    return path === selectedItem
-    
+    return path === selectedItem;
   };
 
   return (
@@ -70,9 +68,16 @@ const MenuListItems = ({selectedItem, setSelectedItem}) => {
           <ListItem
             key={index}
             disablePadding
+            // onClick={() => {
+            //   navigate(item.url)
+            //   setSelectedItem(item.url)
+            // }} fixed with below codes because of item.url coming from source as a url not as a path. when it comes as a url (include http or www or .com) ternary true works else navigate will work.
             onClick={() => {
-              navigate(item.url)
-              setSelectedItem(item.url)
+              item.url.includes("http" || "www" || ".com")
+                ? isAdmin // if the user is admin 
+                  ? window.open(item.url, "_blank")//then can go admin page
+                  : navigate("/stock/no/") // else user sees the no auth page
+                : navigate(item.url);
             }}
             sx={{
               color: "white",
@@ -80,8 +85,8 @@ const MenuListItems = ({selectedItem, setSelectedItem}) => {
               "&:hover": { color: "red" },
               "&:hover .MuiSvgIcon-root": { color: "red" },
               ...(isLinkActive(item.url) || selectedItem === item.url
-                ? { textDecoration:"underline", color:"#bebe" }
-                : {})
+                ? { textDecoration: "underline", color: "#bebe" }
+                : {}),
             }}
           >
             <ListItemButton>
