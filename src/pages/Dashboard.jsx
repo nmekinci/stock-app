@@ -1,48 +1,56 @@
-import * as React from "react"
-import AppBar from "@mui/material/AppBar"
-import Box from "@mui/material/Box"
-import CssBaseline from "@mui/material/CssBaseline"
-import Divider from "@mui/material/Divider"
-import Drawer from "@mui/material/Drawer"
-import IconButton from "@mui/material/IconButton"
+import * as React from "react";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import CssBaseline from "@mui/material/CssBaseline";
+import Divider from "@mui/material/Divider";
+import Drawer from "@mui/material/Drawer";
+import IconButton from "@mui/material/IconButton";
 
-import MenuIcon from "@mui/icons-material/Menu"
-import Toolbar from "@mui/material/Toolbar"
-import Typography from "@mui/material/Typography"
-import Button from "@mui/material/Button"
+import MenuIcon from "@mui/icons-material/Menu";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
 
-import MenuListItems from "../components/MenuListItems"
-import { Outlet } from "react-router-dom"
-import useAuthCall from "../hooks/useAuthCall"
+import MenuListItems from "../components/MenuListItems";
+import { Outlet } from "react-router-dom";
+import useAuthCall from "../hooks/useAuthCall";
 
+import Avatar from "@mui/material/Avatar";
+import Stack from "@mui/material/Stack";
+import Tooltip from "@mui/material/Tooltip";
+import { deepOrange, deepPurple } from "@mui/material/colors";
 
-import { useState } from "react"
+import { useState } from "react";
+import { useSelector } from "react-redux";
 
-const drawerWidth = 200
+const drawerWidth = 200;
 
 function Dashboard(props) {
-  const { logout } = useAuthCall()
-  const { window } = props
-  const [mobileOpen, setMobileOpen] = React.useState(false)
-
+  const { logout } = useAuthCall();
+  const { window } = props;
+  const [mobileOpen, setMobileOpen] = React.useState(false);
 
   const [selectedItem, setSelectedItem] = useState("/stock/");
-
+  const { currentUser } = useSelector((state) => state.auth);
+  // console.log(currentUser[0].toUpperCase());
 
   const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen)
-  }
+    setMobileOpen(!mobileOpen);
+  };
 
   const drawer = (
     <div>
       <Toolbar />
       <Divider />
-      <MenuListItems setSelectedItem={setSelectedItem} selectedItem={selectedItem} />
+      <MenuListItems
+        setSelectedItem={setSelectedItem}
+        selectedItem={selectedItem}
+      />
     </div>
-  )
+  );
 
   const container =
-    window !== undefined ? () => window().document.body : undefined
+    window !== undefined ? () => window().document.body : undefined;
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -67,6 +75,29 @@ function Dashboard(props) {
           <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
             Stock App
           </Typography>
+
+          <Stack direction="row" marginRight={2} sx={{}}>
+            <Tooltip title={currentUser} arrow>
+              <div style={{ cursor: "pointer" }}>
+                <Avatar
+                  sx={{
+                    bgcolor: deepPurple[500],
+                    transition: "ease 700ms",
+                    "&:hover": {
+                      color: "gray",
+                      bgcolor: deepPurple[100],
+                    },
+                  }}
+                >
+                  {currentUser[0].toUpperCase()}
+                </Avatar>
+              </div>
+            </Tooltip>
+
+            {/* <Avatar>H</Avatar>
+            <Avatar sx={{ bgcolor: deepOrange[500] }}>N</Avatar> 
+            <Avatar sx={{ bgcolor: deepPurple[500] }}>{currentUser[0].toUpperCase()}</Avatar> */}
+          </Stack>
 
           <Button variant="contained" onClick={() => logout()}>
             Logout
@@ -93,7 +124,7 @@ function Dashboard(props) {
               boxSizing: "border-box",
               width: drawerWidth,
               backgroundColor: "secondary.main",
-              color: "white"
+              color: "white",
             },
           }}
         >
@@ -106,7 +137,7 @@ function Dashboard(props) {
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               width: drawerWidth,
-              backgroundColor:"secondary.main"
+              backgroundColor: "secondary.main",
             },
           }}
           open
@@ -126,7 +157,7 @@ function Dashboard(props) {
         <Outlet />
       </Box>
     </Box>
-  )
+  );
 }
 
-export default Dashboard
+export default Dashboard;
