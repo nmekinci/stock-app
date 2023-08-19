@@ -78,6 +78,7 @@ const MenuListItems = ({ selectedItem, setSelectedItem }) => {
                   ? window.open(item.url, "_blank")//then can go admin page
                   : navigate("/stock/no/") // else user sees the no auth page
                 : navigate(item.url);
+                setSelectedItem(item.url)
             }}
             sx={{
               color: "white",
