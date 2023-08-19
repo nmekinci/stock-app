@@ -4,6 +4,8 @@ import  Typography  from "@mui/material/Typography"
 import Button  from "@mui/material/Button"
 import ProductModal from "../components/ProductModal"
 import ProductTable from "../components/ProductTable"
+import { useEffect } from "react"
+import { useState } from "react"
 
 const Products = () => {
 
