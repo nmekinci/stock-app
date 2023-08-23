@@ -20,8 +20,9 @@ import Stack from "@mui/material/Stack";
 import Tooltip from "@mui/material/Tooltip";
 import { deepOrange, deepPurple } from "@mui/material/colors";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+
 
 const drawerWidth = 200;
 
@@ -30,7 +31,17 @@ function Dashboard(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
-  const [selectedItem, setSelectedItem] = useState("/stock/");
+  const [selectedItem, setSelectedItem] = useState(() => {
+    const savedSelectedItem = localStorage.getItem("selected-item");
+    return savedSelectedItem ? JSON.parse(savedSelectedItem) : "/stock/";
+  });
+
+  useEffect(() => {
+    localStorage.setItem("selected-item", JSON.stringify(selectedItem))
+    // console.log(selectedItem)
+  }, [selectedItem])
+  // console.log(selectedItem)
+  
   const { currentUser } = useSelector((state) => state.auth);
   // console.log(currentUser[0].toUpperCase());
 
