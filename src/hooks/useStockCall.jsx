@@ -1,4 +1,4 @@
-import { fetchFail, fetchStart, getStockSuccess } from "../features/stockSlice"
+import { fetchFail, fetchStart, getProdCatBrandsSuccess, getStockSuccess } from "../features/stockSlice"
 import { useDispatch } from "react-redux"
 import { toastErrorNotify, toastSuccessNotify } from "../helper/ToastNotify"
 import useAxios from "./useAxios"
@@ -13,7 +13,7 @@ const useStockCall = () => {
     try {
       const { data } = await axiosWithToken(`/stock/${url}/`)
       dispatch(getStockSuccess({ data, url }))
-      console.log(data)
+      // console.log(data)
     } catch (error) {
       dispatch(fetchFail())
       console.log(error)

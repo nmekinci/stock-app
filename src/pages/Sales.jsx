@@ -4,6 +4,8 @@ import { useSelector } from "react-redux";
 import { useState } from "react";
 import { SettingsApplications } from "@mui/icons-material";
 import { Button, Typography } from "@mui/material";
+import SaleModal from "../components/SalesModal";
+import SaleTable from "../components/SaleTable";
 
 const Sales = () => {
   const { getStockData, getProdCatBrands } = useStockCall();
