@@ -41,8 +41,12 @@ function Dashboard(props) {
     // localStorage.setItem("selected-item", JSON.stringify(selectedItem))
     sessionStorage.setItem("selected-item", JSON.stringify(selectedItem))
     // console.log(selectedItem)
+    return () => {
+    sessionStorage.setItem("selected-item", JSON.stringify("/stock/"))
+
+    }
   }, [selectedItem])
-  // console.log(selectedItem)
+  
   
   const { currentUser } = useSelector((state) => state.auth);
   // console.log(currentUser[0].toUpperCase());
