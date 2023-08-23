@@ -21,6 +21,7 @@ export default function SaleTable({ handleOpen, setInfo }) {
       flex: 1,
     },
 
+    
     {
       field: "brand",
       headerName: "Brand",
