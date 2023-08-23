@@ -15,8 +15,9 @@ const Brands = () => {
   useEffect(() => {
     getStockData("brands")
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
-  
 
+
+  
   return (
     <Box>
       <Typography variant="h4" color="error" mb={2}>
