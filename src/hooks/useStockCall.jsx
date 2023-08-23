@@ -44,8 +44,42 @@ const useStockCall = () => {
       console.log(error)
     }
   }
+  const putStockData = async (url, info) => {
+    dispatch(fetchStart())
+    try {
+      await axiosWithToken.put(`/stock/${url}/${info.id}/`, info) 
+      toastSuccessNotify(`${url} succesfuly updated`)
+      getStockData(url)
+    } catch (error) {
+      dispatch(fetchFail())
+      toastErrorNotify(`${url} can not be updated`)
+      console.log(error)
+    }
+  }
 
-  return { getStockData, deleteStockData, postStockData }
+  const getProdCatBrands = async () => {
+    dispatch(fetchStart())
+    try {
+      const [products, categories, brands] = await Promise.all([ //with promise.all we got all of three and together
+        axiosWithToken("stock/products/"),
+        axiosWithToken("stock/categories/"),
+        axiosWithToken("stock/brands/"),
+      ])
+      dispatch(
+        getProdCatBrandsSuccess([
+          products?.data,
+          categories?.data,
+          brands?.data,
+        ])
+      )
+    } catch (error) {
+      console.log(error)
+      dispatch(fetchFail())
+      toastErrorNotify("Data can not be fetched")
+    }
+  }
+
+  return { getStockData, deleteStockData, postStockData, getProdCatBrands, putStockData}
 }
 
 export default useStockCall
