@@ -47,3 +47,5 @@ export default function FirmCard({ firm }) {
     </Card>
   );
 }
+
+
