@@ -32,12 +32,14 @@ function Dashboard(props) {
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   const [selectedItem, setSelectedItem] = useState(() => {
-    const savedSelectedItem = localStorage.getItem("selected-item");
+    // const savedSelectedItem = localStorage.getItem("selected-item");
+    const savedSelectedItem = sessionStorage.getItem("selected-item");
     return savedSelectedItem ? JSON.parse(savedSelectedItem) : "/stock/";
   });
 
   useEffect(() => {
-    localStorage.setItem("selected-item", JSON.stringify(selectedItem))
+    // localStorage.setItem("selected-item", JSON.stringify(selectedItem))
+    sessionStorage.setItem("selected-item", JSON.stringify(selectedItem))
     // console.log(selectedItem)
   }, [selectedItem])
   // console.log(selectedItem)
