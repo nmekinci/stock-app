@@ -18,7 +18,8 @@ const Charts = () => {
     date: item.createds,
     price: Number(item.price_total),
   }));
-
+// console.log(salesData);
+// console.log(purchasesData);
   return (
     <Grid container justifyContent="center" spacing={3} mt={4}>
       <Grid item xs={12} md={6}>
