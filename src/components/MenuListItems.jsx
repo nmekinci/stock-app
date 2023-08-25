@@ -74,11 +74,11 @@ const MenuListItems = ({ selectedItem, setSelectedItem }) => {
             // }} fixed with below codes because of item.url coming from source as a url not as a path. when it comes as a url (include http or www or .com) ternary true works else navigate will work.
             onClick={() => {
               item.url.includes("http" || "www" || ".com")
-                ? isAdmin // if the user is admin 
-                  ? window.open(item.url, "_blank")//then can go admin page
+                ? isAdmin // if the user is admin
+                  ? window.open(item.url, "_blank") //then can go admin page
                   : navigate("/stock/no/") // else user sees the no auth page
                 : navigate(item.url);
-                setSelectedItem(item.url)
+              setSelectedItem(item.url);
             }}
             sx={{
               color: "white",
@@ -90,9 +90,20 @@ const MenuListItems = ({ selectedItem, setSelectedItem }) => {
                 : {}),
             }}
           >
-            <ListItemButton>
+            <ListItemButton 
+            disabled = {(item.title === "Admin Panel") && !isAdmin }
+            >
               <ListItemIcon>{item.icon}</ListItemIcon>
-              <ListItemText primary={item.title} />
+              <ListItemText
+                primary={item.title}
+                // disableTypography= true
+                // sx={{
+                //   // color:
+                //   //   item.title !== "Admin Panel" ? "white" : 
+                //   //   isAdmin ? "white" : "grey",
+                //   disabled : "disabled",
+                // }}
+              />
             </ListItemButton>
           </ListItem>
         ))}
